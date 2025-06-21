@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  eatc-backend-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: eatc-backend-dev
+    working_dir: /app/source/spring   # <-- 여기 변경!
+    volumes:
+<<<<<<< Updated upstream
+      - ./source/spring:/app
+      - ~/.m2:/root/.m2
+=======
+      - .:/app  # 현재 backend 디렉토리 전체를 /app에 마운트
+     # - ~/.m2:/root/.m2
+>>>>>>> Stashed changes
+    ports:
+      - "8080:8080"
+    command: mvn spring-boot:run
+<<<<<<< Updated upstream
+=======
+
+networks:
+  eatc-net:
+    external: true
+>>>>>>> Stashed changes
