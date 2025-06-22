@@ -1,10 +1,8 @@
 package com.eatc.eatc.controller;
 
-//import com.eatc.dto.UserDto;
-//import com.eatc.mapper.UserMapper;
 import com.eatc.eatc.dto.UserDto;
-import com.eatc.eatc.mapper.UserMapper;
 import com.eatc.eatc.dto.LoginRequest;
+import com.eatc.eatc.service.UserService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,20 +13,20 @@ import java.util.List;
 @RestController
 public class UserController {
 
-    private final UserMapper userMapper;
+    private final UserService userService;
 
-    public UserController(UserMapper userMapper) {
-        this.userMapper = userMapper;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping("/users")
     public List<UserDto> getAllUsers() {
-        return userMapper.findAllUsers();
+        return userService.getAllUsers();
     }
 
     @PostMapping("/login")
     public ResponseEntity<UserDto> login(@RequestBody LoginRequest request) {
-        UserDto user = userMapper.findByLogin(request.getLoginId(), request.getPassword());
+        UserDto user = userService.login(request.getLoginId(), request.getPassword());
         if (user != null) {
             return ResponseEntity.ok(user);
         } else {
