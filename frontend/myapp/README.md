@@ -68,3 +68,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## 환경 변수 설정
+
+API 서버 주소를 변경하려면 `.env` 파일에 `REACT_APP_API_BASE_URL` 값을 설정합니다. 기본값은 `/api` 입니다.
+
+예시:
+
+```
+REACT_APP_API_BASE_URL=http://192.168.0.121:8080/api
+```
