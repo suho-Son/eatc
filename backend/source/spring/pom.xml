@@ -9,11 +9,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.3.11</version>
-<<<<<<< Updated upstream
         <relativePath/> <!-- lookup parent from repository -->
-=======
-        <relativePath/>
->>>>>>> Stashed changes
     </parent>
 
     <groupId>com.eatc</groupId>
@@ -49,9 +45,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-<<<<<<< Updated upstream
-        <!-- 🧪 테스트용 의존성 -->
-=======
         <!-- MariaDB Connector -->
         <dependency>
             <groupId>org.mariadb.jdbc</groupId>
@@ -73,28 +66,19 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Test -->
->>>>>>> Stashed changes
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-<<<<<<< Updated upstream
-        <!-- 🔁 개발 중 자동 재시작을 위한 devtools -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-=======
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.30</version>
             <scope>provided</scope>
->>>>>>> Stashed changes
+        </dependency>
+
+        <!-- Test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -103,16 +87,8 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-<<<<<<< Updated upstream
-=======
-                <version>3.3.11</version> <!-- 추가된 핵심 -->
-                <configuration>
-                    <skipTests>true</skipTests>
-                </configuration>
->>>>>>> Stashed changes
             </plugin>
         </plugins>
     </build>
 
 </project>
-
