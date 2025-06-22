@@ -3,10 +3,11 @@ import './App.css';
 
 function App() {
   const [users, setUsers] = useState(null);
+  const API_BASE = process.env.REACT_APP_API_BASE_URL || '/api';
 
   const handleFetch = async () => {
     try {
-      const response = await fetch('/api/users');
+      const response = await fetch(`${API_BASE}/users`);
       if (response.ok) {
         const data = await response.json();
         setUsers(data);
