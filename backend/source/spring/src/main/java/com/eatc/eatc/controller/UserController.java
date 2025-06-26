@@ -3,6 +3,7 @@ package com.eatc.eatc.controller;
 import com.eatc.eatc.dto.UserDto;
 // import com.eatc.eatc.dto.LoginRequest;
 import com.eatc.eatc.service.UserService;
+import org.springframework.beans.factory.annotation.Value;
 
 // import org.springframework.http.HttpStatus;
 // import org.springframework.http.ResponseEntity;
@@ -16,6 +17,12 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    @Value("${app.paths.users}")
+    private String usersPath;
+    @Value("${app.paths.user-edit}")
+    private String userEditPath;
+    @Value("${app.paths.user-update}")
+    private String userUpdatePath;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -46,10 +53,28 @@ public class UserController {
     */
 
     // 사용자 목록 페이지 출력
-    @GetMapping("/users")
+    @GetMapping("${app.paths.users}")
     public String users(Model model) {
         List<UserDto> users = userService.getAllUsers();
         model.addAttribute("users", users);
+        model.addAttribute("userEditPath", userEditPath);
         return "users";
+    }
+
+    // 사용자 수정 페이지
+    @GetMapping("${app.paths.user-edit}")
+    public String editUserForm(@PathVariable("id") int id, Model model) {
+        UserDto user = userService.getUserById(id);
+        model.addAttribute("user", user);
+        model.addAttribute("userUpdatePath", userUpdatePath);
+        return "user_edit";
+    }
+
+    // 사용자 정보 수정
+    @PutMapping("${app.paths.user-update}")
+    public String updateUser(@PathVariable("id") int id, UserDto userDto) {
+        userDto.setUserId(id);
+        userService.updateUser(userDto);
+        return "redirect:" + usersPath;
     }
 }

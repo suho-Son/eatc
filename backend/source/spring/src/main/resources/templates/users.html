@@ -13,6 +13,7 @@
         <th>로그인ID</th>
         <th>이름</th>
         <th>이메일</th>
+        <th>수정</th>
     </tr>
     </thead>
     <tbody>
@@ -21,6 +22,7 @@
         <td th:text="${user.loginId}"></td>
         <td th:text="${user.name}"></td>
         <td th:text="${user.email}"></td>
+        <td><a th:href="@{${userEditPath}(id=${user.userId})}">수정</a></td>
     </tr>
     </tbody>
 </table>
