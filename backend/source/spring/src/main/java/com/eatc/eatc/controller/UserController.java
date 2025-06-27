@@ -1,12 +1,13 @@
 package com.eatc.eatc.controller;
 
 import com.eatc.eatc.dto.UserDto;
-// import com.eatc.eatc.dto.LoginRequest;
+import com.eatc.eatc.dto.LoginRequest;
+import com.eatc.eatc.util.JwtUtil;
 import com.eatc.eatc.service.UserService;
 import org.springframework.beans.factory.annotation.Value;
 
-// import org.springframework.http.HttpStatus;
-// import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,19 @@ public class UserController {
     @GetMapping("/")
     public String index() {
         return "index";
+    }
+
+    // React에서 호출하는 로그인 API
+    @PostMapping("/api/login")
+    @ResponseBody
+    public ResponseEntity<?> apiLogin(@RequestBody LoginRequest request) {
+        UserDto user = userService.login(request.getLoginId(), request.getPassword());
+        if (user != null) {
+            String token = JwtUtil.generateToken(user.getLoginId());
+            return ResponseEntity.ok(java.util.Map.of("token", token));
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
     }
 
     // REST API 엔드포인트는 주석 처리
